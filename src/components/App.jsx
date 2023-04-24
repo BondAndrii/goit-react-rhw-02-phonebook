@@ -1,11 +1,16 @@
-// import React from "react";
+import React from "react";
+
+import { Component } from "react";
 
 import { ContactForm } from "./ContactForm/ContactForm";
 
-export const App = () => {
-  return (
+export class App extends Component {
+  render() {
+    return (
     <div>
       <ContactForm/>
     </div>
   );
+  }
+  
 };
