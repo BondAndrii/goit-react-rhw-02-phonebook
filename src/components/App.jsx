@@ -7,12 +7,14 @@ import { ContactForm } from "./ContactForm/ContactForm";
 export class App extends Component {
   state = {
     contacts: [],
-    name: ''
+    name: '',
+    
   }
   render() {
+   
     return (
     <div>
-      <ContactForm/>
+        <ContactForm  />
     </div>
   );
   }
