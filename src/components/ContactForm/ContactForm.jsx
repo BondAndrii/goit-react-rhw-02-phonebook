@@ -1,5 +1,7 @@
 import React from "react";
 
+
+
 export const ContactForm = () => {
     return (
         <>
@@ -7,6 +9,7 @@ export const ContactForm = () => {
         <form>
                 <label>
                     <p>Name</p>
+                    
                     <input
                         type="text"
                         name="name"
@@ -15,6 +18,7 @@ export const ContactForm = () => {
                         required
                     /> 
                 </label>
+                <button>Add contact</button>
             </form>
         </>
     )
