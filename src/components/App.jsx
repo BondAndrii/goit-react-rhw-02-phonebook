@@ -8,16 +8,21 @@ import { ContactList } from "./ContactList/ContactList";
 
 export class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+    {id: 'id-1', name: 'Rosie Simpson'},
+    {id: 'id-2', name: 'Hermione Kline'},
+    {id: 'id-3', name: 'Eden Clements'},
+    {id: 'id-4', name: 'Annie Copeland'},
+  ],
     name: '',
     
   }
   render() {
-   
+    const { contacts } = this.state;
     return (
     <div>
-        <ContactForm />
-        <ContactList/>
+        <ContactForm/>
+        <ContactList contacts={contacts } />
     </div>
   );
   }
