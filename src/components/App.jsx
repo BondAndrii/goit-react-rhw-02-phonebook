@@ -1,7 +1,11 @@
+// import React from "react";
+
+import { ContactForm } from "./ContactForm/ContactForm";
+
 export const App = () => {
   return (
     <div>
-      Begin
+      <ContactForm/>
     </div>
   );
 };
