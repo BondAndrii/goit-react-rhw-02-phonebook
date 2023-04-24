@@ -1,25 +1,48 @@
-import React from "react";
+
+import React, { Component } from "react";
 
 
 
-export const ContactForm = () => {
+export class ContactForm extends Component {
+    state = {
+        name:'',
+    };
+    handleChange = (event) => {
+        const { value } = event.target;
+        if (value === "кіт") {
+            this.setState({ name: "cat" })
+        } else {
+            this.setState({name:value})
+        }
+        
+    }
+    handleSubmit = (event) => {
+        
+        event.preventDefault();
+        console.log(this.state.name)
+        
+        }
+    render() {
+        const { name } = this.state;
     return (
         <>
         <h1>Phonebook</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
                 <label>
-                    <p>Name</p>
-                    
+                    <p>Name</p>                    
                     <input
                         type="text"
                         name="name"
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                         required
+                        value={name}
+                        onChange={this.handleChange}
                     /> 
                 </label>
-                <button>Add contact</button>
+                <button type="submit" >Add contact</button>
             </form>
         </>
-    )
+        )
+    }
 }

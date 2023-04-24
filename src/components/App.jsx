@@ -1,10 +1,13 @@
 import React from "react";
 
+// import { nanoid } from "nanoid";
+
 import { Component } from "react";
 
 import { ContactForm } from "./ContactForm/ContactForm";
 
 import { ContactList } from "./ContactList/ContactList";
+
 
 export class App extends Component {
   state = {
@@ -17,11 +20,16 @@ export class App extends Component {
     name: '',
     
   }
+  addNewContact = () => {
+    console.log("click");
+  }
+  
   render() {
     const { contacts } = this.state;
+    
     return (
     <div>
-        <ContactForm/>
+        <ContactForm  />
         <ContactList contacts={contacts } />
     </div>
   );
