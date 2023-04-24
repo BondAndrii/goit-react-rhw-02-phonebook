@@ -9,8 +9,8 @@ export class ContactForm extends Component {
     };
     handleChange = (event) => {
         const { value } = event.target;
-        if (value === "кіт") {
-            this.setState({ name: "cat" })
+        if (value === "кохання") {
+            this.setState({ name: "Оксана і Андрій" })
         } else {
             this.setState({name:value})
         }
