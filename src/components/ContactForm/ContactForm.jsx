@@ -5,23 +5,26 @@ import React, { Component } from "react";
 
 export class ContactForm extends Component {
     state = {
+        
         name:'',
     };
     handleChange = (event) => {
-        const { value } = event.target;
-        if (value === "кохання") {
-            this.setState({ name: "Оксана і Андрій" })
-        } else {
-            this.setState({name:value})
-        }
-        
+        // патерн керуючого елементу. З клавіатури знімається те, що воодить юзер та записується в стейт. А на екран вивиодиться, те, що записано в стейті.
+        //Тобто ми вклинюємся між юзер - клавіатурою і юзер - екраном, можемо робити маніпуляції, валідацію, цензуру з тим, що юзер вводить і відображати
+        // в інпуті те, що пройшло через наші маніпуляції з введеним з клавіатури
+        const { value } = event.currentTarget;       
+        this.setState({ name: value });       
     }
-    handleSubmit = (event) => {
-        
+    handleSubmit = (event) => {       
         event.preventDefault();
-        console.log(this.state.name)
-        
-        }
+        this.props.onSubmit(this.state.name);
+        // console.log(this.state.name)
+        this.reset();
+                      
+    }
+    reset = () => {
+    this.setState({name: '' })
+  }
     render() {
         const { name } = this.state;
     return (
