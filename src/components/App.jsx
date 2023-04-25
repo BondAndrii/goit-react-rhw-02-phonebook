@@ -10,7 +10,7 @@ import { ContactList } from "./ContactList/ContactList";
 
 import { nanoid } from "nanoid";
 
-
+ 
 export class App extends Component {
   
   state = {
@@ -24,17 +24,18 @@ export class App extends Component {
     
   }
   addNewContact = (name) => {
-    // const { contacts } = this.state;
-    const id = nanoid();
-    this.setState(prevState => ({ contacts: [{ id, name }, ...prevState.contacts] }))
-    console.log(this.state);
-    // this.setState(prevState => prevState.contacts.push({ id, name }))
-    // console.log(this.state);
+    
+    const contact = {
+      id: nanoid(),
+      name,
+    }
+    this.setState(prevState => ({ contacts: [ ...prevState.contacts, contact,] }))
+    console.log(this.state);    
   }
-  
+
   render() {
     const { contacts } = this.state;
-    
+    console.log("in render", this.state)
     return (
     <div>
         <ContactForm onSubmit={this.addNewContact} />
