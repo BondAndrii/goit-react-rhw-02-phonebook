@@ -22,15 +22,21 @@ export class App extends Component {
     filter:'',
     
   }
-  addNewContact = ({name, number}) => {
-    
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
+  addNewContact = ({ name, number }) => {
+    const { contacts } = this.state;
+    if (contacts.find(contact => contact.name === name)) {
+      alert(`${name} is already in contacts`);
+    } else {
+      // this.state.contacts.map(contact => contact.name.includes(name) ? alert("Співпадіння") : alert("Норм"))
+      // name === this.state.contacts.name ? alert("Співпадіння") : alert("Норм")
+      const contact = {
+        id: nanoid(),
+        name,
+        number,
+      }
+      this.setState(prevState => ({ contacts: [...prevState.contacts, contact,] }))
+      // console.log(this.state);    
     }
-    this.setState(prevState => ({ contacts: [ ...prevState.contacts, contact,] }))
-    // console.log(this.state);    
   }
   handleFilter = (event) => {    
     const { value } = event.currentTarget;
