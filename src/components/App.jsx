@@ -20,7 +20,7 @@ export class App extends Component {
     {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
   ],
-    name: '',
+    filter:'',
     
   }
   addNewContact = ({name, number}) => {
@@ -33,14 +33,29 @@ export class App extends Component {
     this.setState(prevState => ({ contacts: [ ...prevState.contacts, contact,] }))
     console.log(this.state);    
   }
-
+  handleFilter = (event) => {
+    // const { filter } = this.state;
+    const { value } = event.currentTarget;
+    this.setState({ filter: value });
+    // console.log(this.state.filter)
+  }
+  makeFilterList = () => {
+    const { filter, contacts } = this.state;
+    const normalFilter = filter.toLowerCase();
+    return contacts.filter(contact => contact.name.toLowerCase().includes(normalFilter));
+    
+  }
   render() {
-    const { contacts } = this.state;
-    console.log("in render", this.state)
+    const { filter} = this.state;
+    // const normalFilter = filter.toLowerCase();
+    const forPrint = this.makeFilterList();
+    // const forPrint = contacts.filter(contact => contact.name.toLowerCase().includes(normalFilter));
+    // console.log("in render", this.state)
+    // const forPrint = this.printList();
     return (
     <div>
         <ContactForm onSubmit={this.addNewContact} />
-        <ContactList contacts={contacts } />
+        <ContactList contacts={forPrint} filter={filter } onChange={this.handleFilter} />
     </div>
   );
   }
