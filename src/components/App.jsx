@@ -50,6 +50,17 @@ export class App extends Component {
   onClear = () => {
     this.setState({filter:''})
   }
+  onDelete = (id) => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
+    console.log(id);
+  }
+  //  deleteContact = (contactId) => {
+  //   this.setState(prevState => ({
+  //     contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+  //   }));
+  // };
   render() {
     const { filter} = this.state;    
     const forPrint = this.makeFilterList();    
@@ -59,7 +70,7 @@ export class App extends Component {
         <ContactForm onSubmit={this.addNewContact} />
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.handleFilter} onClear={this.onClear } />
-        <ContactList contacts={forPrint} value={filter } onChange={this.handleFilter} />
+        <ContactList contacts={forPrint} value={filter } onChange={this.handleFilter} onDelete={this.onDelete} />
     </div>
   );
   }
