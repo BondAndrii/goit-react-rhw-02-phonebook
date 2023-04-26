@@ -7,9 +7,9 @@ export const ContactList = ({contacts}) => {
             <h2>ContactList</h2>
             <ul>
                 {contacts.map(contact => {
-                    const { id, name } = contact;
+                    const { id, name, number } = contact;
                     return (
-                        <li key={id}>{ name}</li>
+                        <li key={id}>{name}:{number}</li>
                     )
                 })}
             </ul>
