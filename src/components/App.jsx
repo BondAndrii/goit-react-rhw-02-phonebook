@@ -30,7 +30,7 @@ export class App extends Component {
       number,
     }
     this.setState(prevState => ({ contacts: [ ...prevState.contacts, contact,] }))
-    console.log(this.state);    
+    // console.log(this.state);    
   }
   handleFilter = (event) => {    
     const { value } = event.currentTarget;
@@ -41,6 +41,9 @@ export class App extends Component {
     const normalFilter = filter.toLowerCase();
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalFilter));    
   }
+  onClear = () => {
+    this.setState({filter:''})
+  }
   render() {
     const { filter} = this.state;    
     const forPrint = this.makeFilterList();    
@@ -49,8 +52,8 @@ export class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addNewContact} />
         <h2>Contacts</h2>
-        <Filter value={filter} onChange={this.handleFilter} />
-        <ContactList contacts={forPrint} filter={filter } onChange={this.handleFilter} />
+        <Filter value={filter} onChange={this.handleFilter} onClear={this.onClear } />
+        <ContactList contacts={forPrint} value={filter } onChange={this.handleFilter} />
     </div>
   );
   }
