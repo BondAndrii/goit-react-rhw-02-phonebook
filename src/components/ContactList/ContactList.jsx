@@ -1,13 +1,10 @@
 import React from "react";
 
-import { Filter } from "components/Filter/Filter";
 
-export const ContactList = ({contacts, filter, onChange}) => {
+
+export const ContactList = ({contacts}) => {
     
-    return (
-        <>
-            <h2>ContactList</h2>
-            <Filter filter={filter} onChange={onChange} />
+    return (     
             <ul>
                 {contacts.map(contact => {
                     const { id, name, number } = contact;
@@ -15,7 +12,6 @@ export const ContactList = ({contacts, filter, onChange}) => {
                         <li key={id}>{name}:{number}</li>
                     )
                 })}
-            </ul>
-        </>
+            </ul>        
     )
 }

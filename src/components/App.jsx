@@ -1,6 +1,6 @@
 import React from "react";
 
-// import { nanoid } from "nanoid";
+import { nanoid } from "nanoid";
 
 import { Component } from "react";
 
@@ -8,9 +8,8 @@ import { ContactForm } from "./ContactForm/ContactForm";
 
 import { ContactList } from "./ContactList/ContactList";
 
-import { nanoid } from "nanoid";
+import { Filter } from "components/Filter/Filter";
 
- 
 export class App extends Component {
   
   state = {
@@ -33,28 +32,24 @@ export class App extends Component {
     this.setState(prevState => ({ contacts: [ ...prevState.contacts, contact,] }))
     console.log(this.state);    
   }
-  handleFilter = (event) => {
-    // const { filter } = this.state;
+  handleFilter = (event) => {    
     const { value } = event.currentTarget;
-    this.setState({ filter: value });
-    // console.log(this.state.filter)
+    this.setState({ filter: value });    
   }
   makeFilterList = () => {
     const { filter, contacts } = this.state;
     const normalFilter = filter.toLowerCase();
-    return contacts.filter(contact => contact.name.toLowerCase().includes(normalFilter));
-    
+    return contacts.filter(contact => contact.name.toLowerCase().includes(normalFilter));    
   }
   render() {
-    const { filter} = this.state;
-    // const normalFilter = filter.toLowerCase();
-    const forPrint = this.makeFilterList();
-    // const forPrint = contacts.filter(contact => contact.name.toLowerCase().includes(normalFilter));
-    // console.log("in render", this.state)
-    // const forPrint = this.printList();
+    const { filter} = this.state;    
+    const forPrint = this.makeFilterList();    
     return (
-    <div>
+      <div>
+        <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addNewContact} />
+        <h2>Contacts</h2>
+        <Filter value={filter} onChange={this.handleFilter} />
         <ContactList contacts={forPrint} filter={filter } onChange={this.handleFilter} />
     </div>
   );
